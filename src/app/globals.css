@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+:root {
+  --background: #030303;
+  --foreground: #e6e6e6;
+  --accent: #d8ff00; /* Toxic neon yellow/green */
+  --accent-foreground: #000000;
+  --muted: #1c1c1c;
+  --muted-foreground: #8a8a8a;
+  --border: #333333;
+  --destructive: #ff2a2a;
+  --panel: rgba(20, 20, 20, 0.7);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-panel: var(--panel);
+  --font-sans: var(--font-syne), sans-serif;
+  --font-mono: var(--font-dm-mono), monospace;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  background-image: 
+    linear-gradient(rgba(216, 255, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(216, 255, 0, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Subtle CRT Grain Overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 50;
+  mix-blend-mode: overlay;
+}
+
+/* Hard Brutalist Borders */
+.brutalist-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  box-shadow: 4px 4px 0px var(--accent);
+  transition: all 0.2s ease-in-out;
+  backdrop-filter: blur(8px);
+}
+
+.brutalist-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--accent);
+}
+
+.brutalist-input {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  font-family: var(--font-mono);
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.brutalist-input:focus {
+  border-color: var(--accent);
+  box-shadow: 2px 2px 0px var(--accent);
+}
+
+.brutalist-button {
+  background: var(--accent);
+  color: var(--accent-foreground);
+  font-family: var(--font-mono);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 3px 3px 0px rgba(255, 255, 255, 0.2);
+}
+
+.brutalist-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px rgba(255, 255, 255, 0.2);
+}
+
+.brutalist-button:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px rgba(255, 255, 255, 0.2);
+}
+
+/* Custom Selection */
+::selection {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+/* Typography Scale */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.mono-data {
+  font-family: var(--font-mono);
+  color: var(--accent);
+}
