@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Audit {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  data      String   // JSON string of the audit payload
+  summary   String?  // The AI generated summary
+  Lead      Lead?
+}
+
+model Lead {
+  id          String   @id @default(cuid())
+  email       String
+  companyName String?
+  role        String?
+  teamSize    String?
+  createdAt   DateTime @default(now())
+  auditId     String   @unique
+  audit       Audit    @relation(fields: [auditId], references: [id])
+}
