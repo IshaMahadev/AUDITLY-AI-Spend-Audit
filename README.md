@@ -1,4 +1,4 @@
-# AI Spend Audit
+# Auditly - Your AI Spend Audit
 
 AI Spend Audit is a brutal, mathematically defensible tool for engineering managers and startup founders to analyze their AI infrastructure stack (Cursor, Copilot, Claude, ChatGPT, etc.) and instantly identify wasted capital from sub-optimal plans.
 
