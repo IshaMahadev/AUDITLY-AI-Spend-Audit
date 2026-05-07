@@ -1,25 +1,98 @@
-# AI Spend Audit
+# Auditly — AI Spend Audit
 
-AI Spend Audit is a brutal, mathematically defensible tool for engineering managers and startup founders to analyze their AI infrastructure stack (Cursor, Copilot, Claude, ChatGPT, etc.) and instantly identify wasted capital from sub-optimal plans.
+A free, instant audit tool for engineering managers and startup founders to analyze their AI infrastructure stack (Cursor, Copilot, Claude, ChatGPT, Windsurf, Gemini) and identify wasted capital from sub-optimal plans.
 
-![App Screenshot](/public/screenshot.png)
+## Screenshots
+
+### Homepage — Input Your Stack
+![Homepage](docs/screenshots/homepage.png)
+
+### Results — Optimally Spending
+![Results Optimal](docs/screenshots/results-optimal.png)
+
+### Results — Savings Detected
+![Results Savings](docs/screenshots/results-savings.png)
 
 ## Quick Start
 
-1. **Install dependencies:** `npm install`
-2. **Setup Database:** `npx prisma db push && npx prisma generate`
-3. **Set Environment Variables:** Copy `.env.example` to `.env` and add `ANTHROPIC_API_KEY`
-4. **Run Locally:** `npm run dev`
-5. **Deploy:** One-click deploy on Vercel with Vercel Postgres attached.
+```bash
+# 1. Install dependencies
+npm install
 
-## Decisions
+# 2. Generate Prisma client
+npx prisma generate
 
-1. **Next.js App Router**: Chosen for seamless SSR, easy API route generation (for the LLM and Lead capture), and zero-config deployment on Vercel.
-2. **Prisma ORM with SQLite**: Used to satisfy the backend persistence requirement quickly while allowing for immediate local testing without needing a remote Postgres instance during development.
-3. **Client-side Audit Logic**: The `auditEngine` runs entirely on the client side for the initial audit to ensure immediate "instant on-screen" feedback, preventing perceived latency.
-4. **Tailwind + Hard Brutalism**: Instead of generic UI libraries, I opted for raw CSS variables with Tailwind to create a memorable, retro-futuristic, high-contrast aesthetic that feels like a real "audit" tool, standing out from typical SaaS templates.
-5. **Honeypot over hCaptcha**: I chose a honeypot field for the lead capture to prioritize a frictionless user experience over extreme security. Since this is an MVP, avoiding the friction of a CAPTCHA challenge is critical for conversion.
+# 3. Run the dev server
+npm run dev
+```
 
-## Live URL
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-[https://ai-spend-audit.vercel.app](https://ai-spend-audit.vercel.app)
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 16 (App Router, Turbopack) |
+| Language | TypeScript (strict mode) |
+| Styling | Tailwind CSS v4 with `@theme` design tokens |
+| Database | Prisma 7 + SQLite (via better-sqlite3 adapter) |
+| Fonts | Syne, DM Sans, DM Mono (Google Fonts) |
+| Testing | Jest + Testing Library |
+
+## Architecture
+
+```
+src/
+├── app/
+│   ├── page.tsx                    # Homepage with audit form
+│   ├── layout.tsx                  # Root layout with fonts + SEO
+│   ├── globals.css                 # Design system (Tailwind v4 @theme)
+│   ├── api/
+│   │   ├── audit/route.ts          # POST — run audit + save to DB
+│   │   ├── summary/route.ts        # POST — generate CFO-style summary
+│   │   ├── lead/route.ts           # POST — lead capture with honeypot
+│   │   └── og/route.ts             # GET — dynamic OG image (SVG)
+│   └── audit/[id]/
+│       ├── page.tsx                # Server component — loads audit from DB
+│       └── AuditResultsClient.tsx  # Client component — polished results UI
+├── components/
+│   ├── InputForm.tsx               # Tool/plan/spend input form
+│   └── AuditResults.tsx            # Legacy results component
+├── lib/
+│   ├── auditEngine.ts              # Core audit logic (rule engine)
+│   ├── audit.ts                    # Adapter — enriches engine output
+│   ├── supabase.ts                 # DB layer (Prisma wrapper)
+│   ├── ratelimit.ts                # In-memory rate limiter
+│   ├── email.ts                    # Email stub (swap for Resend/SendGrid)
+│   └── types.ts                    # Core domain types
+└── types/
+    └── index.ts                    # AuditResult + ToolRecommendation types
+```
+
+## Key Decisions
+
+1. **Next.js App Router** — SSR, API routes, and zero-config Vercel deployment in one framework.
+2. **Prisma 7 + SQLite** — Local-first persistence with zero external dependencies. The `supabase.ts` abstraction makes switching to Postgres/Supabase a one-file change.
+3. **Templated AI Summaries** — CFO-style personalized summaries without requiring an API key. Drop in an Anthropic key for AI-generated ones.
+4. **Tailwind v4 @theme** — Custom design tokens (`paper`, `ink`, `acid`) instead of generic colors, creating a premium editorial aesthetic.
+5. **Honeypot over CAPTCHA** — Frictionless lead capture that silently catches bots without hurting conversion.
+6. **Rate Limiting** — In-memory sliding-window limiter on all API routes (per-IP and per-email).
+
+## Testing
+
+```bash
+npm test           # 5 audit engine unit tests
+npx tsc --noEmit   # Type check
+npm run build      # Production build
+```
+
+## Documentation
+
+See the [`docs/`](docs/) directory for:
+- [Architecture](docs/ARCHITECTURE.md)
+- [Pricing Data](docs/PRICING_DATA.md)
+- [Prompts](docs/PROMPTS.md)
+- [GTM Strategy](docs/GTM.md)
+- [Economics](docs/ECONOMICS.md)
+- [Dev Log](docs/DEVLOG.md)
+- [Reflection](docs/REFLECTION.md)
