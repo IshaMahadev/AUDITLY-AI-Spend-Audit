@@ -58,6 +58,37 @@ export function runAudit(data: UserInputData): AuditReport {
       }
     }
 
+    // Logic for Anthropic & OpenAI API
+    if (sub.toolName === 'Anthropic API direct' || sub.toolName === 'OpenAI API direct') {
+      if (sub.plan === 'Pay-as-you-go' && sub.spend > 100 && data.teamSize <= 2) {
+        action = "Switch to individual Pro subscriptions";
+        savings = sub.spend - (20 * sub.seats);
+        reason = "High API spend for a small team indicates power-usage that would be cheaper on flat-rate $20/mo subscriptions.";
+      }
+    }
+
+    // Logic for Gemini
+    if (sub.toolName === 'Gemini') {
+      if (sub.plan === 'Ultra' && data.primaryUseCase === 'coding') {
+        action = "Switch to Cursor Pro or Claude Pro";
+        savings = 0;
+        reason = "Gemini Advanced ($20/mo) lags behind Cursor and Claude 3.5 Sonnet for coding tasks. Switch for better capabilities at the same price.";
+      }
+    }
+
+    // Logic for Windsurf
+    if (sub.toolName === 'Windsurf') {
+      if (sub.plan === 'Team' && data.teamSize < 3) {
+        action = "Downgrade to Windsurf Pro";
+        savings = sub.spend - (15 * sub.seats);
+        reason = "Windsurf Team requires centralized billing, but for small teams (<3), individual Pro plans offer the same features for $10 less per user.";
+      } else if (data.primaryUseCase === 'writing' || data.primaryUseCase === 'research') {
+        action = "Switch to Claude Pro or ChatGPT Plus";
+        savings = 0;
+        reason = "Windsurf is an IDE for coding. For general writing or research, a standard LLM chat interface is more appropriate.";
+      }
+    }
+
     // Default catching if they are paying retail for something Credex can discount
     if (savings <= 0 && sub.spend > 1000) {
         action = "Procure via Credex Credits";
