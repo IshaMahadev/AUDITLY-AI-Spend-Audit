@@ -68,6 +68,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${syne.variable} ${dmSans.variable} ${dmMono.variable}`}
+      data-scroll-behavior="smooth"
     >
       <body className="bg-paper font-body antialiased text-ink">{children}</body>
     </html>
