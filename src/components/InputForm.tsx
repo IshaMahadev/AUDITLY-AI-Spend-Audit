@@ -85,19 +85,21 @@ export default function InputForm({ onSubmit }: InputFormProps) {
           <h2 className="text-2xl font-bold mb-4">YOUR ORGANIZATION</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col space-y-2">
-              <label className="text-xs uppercase tracking-wider text-muted-foreground">Team Size</label>
-              <input 
-                type="number" 
-                min="1" 
-                value={teamSize} 
+              <label htmlFor="team-size" className="text-xs uppercase tracking-wider text-muted-foreground">Team Size</label>
+              <input
+                id="team-size"
+                type="number"
+                min="1"
+                value={teamSize}
                 onChange={e => setTeamSize(parseInt(e.target.value) || 1)}
-                className="brutalist-input text-lg" 
+                className="brutalist-input text-lg"
               />
             </div>
             <div className="flex flex-col space-y-2">
-              <label className="text-xs uppercase tracking-wider text-muted-foreground">Primary Use Case</label>
-              <select 
-                value={primaryUseCase} 
+              <label htmlFor="primary-use-case" className="text-xs uppercase tracking-wider text-muted-foreground">Primary Use Case</label>
+              <select
+                id="primary-use-case"
+                value={primaryUseCase}
                 onChange={e => setPrimaryUseCase(e.target.value as UseCase)}
                 className="brutalist-input text-lg appearance-none"
               >
@@ -120,9 +122,10 @@ export default function InputForm({ onSubmit }: InputFormProps) {
         {subscriptions.map((sub, index) => (
           <div key={sub.id} className="brutalist-card p-4 flex flex-col md:flex-row gap-4 items-start md:items-end group">
             <div className="w-full md:w-1/3 flex flex-col space-y-2">
-              <label className="text-[10px] uppercase tracking-widest text-muted-foreground">Tool</label>
-              <select 
-                value={sub.toolName} 
+              <label htmlFor={`tool-${sub.id}`} className="text-[10px] uppercase tracking-widest text-muted-foreground">Tool</label>
+              <select
+                id={`tool-${sub.id}`}
+                value={sub.toolName}
                 onChange={e => updateSub(sub.id, 'toolName', e.target.value)}
                 className="brutalist-input text-sm w-full"
               >
@@ -130,9 +133,10 @@ export default function InputForm({ onSubmit }: InputFormProps) {
               </select>
             </div>
             <div className="w-full md:w-1/4 flex flex-col space-y-2">
-              <label className="text-[10px] uppercase tracking-widest text-muted-foreground">Plan</label>
-              <select 
-                value={sub.plan} 
+              <label htmlFor={`plan-${sub.id}`} className="text-[10px] uppercase tracking-widest text-muted-foreground">Plan</label>
+              <select
+                id={`plan-${sub.id}`}
+                value={sub.plan}
                 onChange={e => updateSub(sub.id, 'plan', e.target.value)}
                 className="brutalist-input text-sm w-full"
               >
@@ -140,25 +144,28 @@ export default function InputForm({ onSubmit }: InputFormProps) {
               </select>
             </div>
             <div className="w-1/2 md:w-1/6 flex flex-col space-y-2">
-              <label className="text-[10px] uppercase tracking-widest text-muted-foreground">Seats</label>
-              <input 
-                type="number" min="1" 
-                value={sub.seats} 
+              <label htmlFor={`seats-${sub.id}`} className="text-[10px] uppercase tracking-widest text-muted-foreground">Seats</label>
+              <input
+                id={`seats-${sub.id}`}
+                type="number" min="1"
+                value={sub.seats}
                 onChange={e => updateSub(sub.id, 'seats', parseInt(e.target.value) || 1)}
                 className="brutalist-input text-sm w-full"
               />
             </div>
             <div className="w-1/2 md:w-1/6 flex flex-col space-y-2">
-              <label className="text-[10px] uppercase tracking-widest text-muted-foreground">Spend/mo ($)</label>
-              <input 
-                type="number" min="0" step="0.01" 
-                value={sub.spend} 
+              <label htmlFor={`spend-${sub.id}`} className="text-[10px] uppercase tracking-widest text-muted-foreground">Spend/mo ($)</label>
+              <input
+                id={`spend-${sub.id}`}
+                type="number" min="0" step="0.01"
+                value={sub.spend}
                 onChange={e => updateSub(sub.id, 'spend', parseFloat(e.target.value) || 0)}
                 className="brutalist-input text-sm w-full"
               />
             </div>
-            <button 
-              type="button" 
+            <button
+              type="button"
+              aria-label={`Remove ${sub.toolName} subscription`}
               onClick={() => removeTool(sub.id)}
               className="p-2 border border-destructive text-destructive hover:bg-destructive hover:text-white transition-colors h-[42px] w-[42px] flex items-center justify-center shrink-0"
             >
@@ -167,8 +174,8 @@ export default function InputForm({ onSubmit }: InputFormProps) {
           </div>
         ))}
 
-        <button 
-          type="button" 
+        <button
+          type="button"
           onClick={addTool}
           className="w-full py-4 border border-dashed border-muted-foreground text-muted-foreground hover:border-accent hover:text-accent flex items-center justify-center gap-2 uppercase tracking-widest text-sm font-bold transition-all"
         >
