@@ -35,7 +35,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 | Framework | Next.js 16 (App Router, Turbopack) |
 | Language | TypeScript (strict mode) |
 | Styling | Tailwind CSS v4 with `@theme` design tokens |
-| Database | Prisma 7 + SQLite (via better-sqlite3 adapter) |
+| Database | Prisma 7 + PostgreSQL (via pg adapter) |
 | Fonts | Syne, DM Sans, DM Mono (Google Fonts) |
 | Testing | Jest + Testing Library |
 
@@ -63,7 +63,7 @@ src/
 │   ├── audit.ts                    # Adapter — enriches engine output
 │   ├── supabase.ts                 # DB layer (Prisma wrapper)
 │   ├── ratelimit.ts                # In-memory rate limiter
-│   ├── email.ts                    # Email stub (swap for Resend/SendGrid)
+│   ├── email.ts                    # Transactional email via Resend
 │   └── types.ts                    # Core domain types
 └── types/
     └── index.ts                    # AuditResult + ToolRecommendation types
@@ -72,7 +72,7 @@ src/
 ## Key Decisions
 
 1. **Next.js App Router** — SSR, API routes, and zero-config Vercel deployment in one framework.
-2. **Prisma 7 + SQLite** — Local-first persistence with zero external dependencies. The `supabase.ts` abstraction makes switching to Postgres/Supabase a one-file change.
+2. **Prisma 7 + PostgreSQL** — Robust persistence via Postgres. The `supabase.ts` abstraction manages the database connection logic using the Prisma pg adapter.
 3. **Templated AI Summaries** — CFO-style personalized summaries without requiring an API key. Drop in an Anthropic key for AI-generated ones.
 4. **Tailwind v4 @theme** — Custom design tokens (`paper`, `ink`, `acid`) instead of generic colors, creating a premium editorial aesthetic.
 5. **Honeypot over CAPTCHA** — Frictionless lead capture that silently catches bots without hurting conversion.
