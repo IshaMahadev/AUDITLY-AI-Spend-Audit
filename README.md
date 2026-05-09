@@ -80,6 +80,8 @@ src/
 
 ## Testing
 
+See [TESTS.md](TESTS.md) for details on the unit test coverage.
+
 ```bash
 npm test           # 5 audit engine unit tests
 npx tsc --noEmit   # Type check
