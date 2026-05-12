@@ -14,10 +14,10 @@ export async function sendAuditConfirmationEmail(
   companyName?: string
 ): Promise<void> {
   const auditUrl = `${APP_URL}/audit/${audit.id}`;
-  const subject = companyName 
+  const subject = companyName
     ? `Your AI Spend Audit Results for ${companyName}`
     : `Your AI Spend Audit Results`;
-  
+
   const textContent = `
     Hi there,
 
@@ -67,7 +67,7 @@ export async function sendAuditConfirmationEmail(
 
   try {
     await resend.emails.send({
-      from: 'Auditly <noreply@auditly.dev>', // Needs to be a verified domain in Resend
+      from: 'Auditly <onboarding@resend.dev>',
       to: email,
       subject: subject,
       text: textContent,
