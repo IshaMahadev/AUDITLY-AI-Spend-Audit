@@ -2,7 +2,12 @@ import { Resend } from 'resend';
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://auditly.dev";
+
+// IMPORTANT: onboarding@resend.dev is Resend's shared test sender.
+// In production, set FROM_EMAIL to a verified domain address e.g. "hello@yourdomain.com".
+// Without a verified domain, Resend restricts delivery to your own Resend-account email only.
+const FROM_EMAIL = process.env.FROM_EMAIL ?? 'Auditly <onboarding@resend.dev>';
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://ai-spend-audit.vercel.app";
 
 /**
  * Sends a transactional email containing the audit result.
@@ -60,14 +65,16 @@ export async function sendAuditConfirmationEmail(
   `;
 
   if (!resend) {
-    console.log(`[Email Fallback] Would send audit confirmation to ${email}`);
-    console.log(`[Email Fallback] URL: ${auditUrl}`);
+    console.warn(
+      `[Email] RESEND_API_KEY is not set. Skipping email to ${email}.\n` +
+      `[Email] Add RESEND_API_KEY to your environment variables to enable email delivery.`
+    );
     return;
   }
 
   try {
     await resend.emails.send({
-      from: 'Auditly <onboarding@resend.dev>',
+      from: FROM_EMAIL,
       to: email,
       subject: subject,
       text: textContent,
