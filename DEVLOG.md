@@ -33,3 +33,10 @@
 **What I learned:** Always read the assignment constraints twice! Moving files into a `docs/` folder felt cleaner originally, but the automated grading system explicitly requires them at the root.
 **Blockers / what I'm stuck on:** None.
 **Plan for tomorrow:** Rest.
+
+## Day 6 — 2026-05-12
+**Hours worked:** 3
+**What I did:** Addressed post-deployment issues and finalised the submission. Pushed the local repository to the correct GitHub remote (`AUDITLY-AI-Spend-Audit`). Fixed the Resend email logic by making `FROM_EMAIL` configurable and adding explicit error warnings to avoid silent failures. Resolved a Vercel domain conflict by properly linking the new GitHub repo to the existing Vercel project. Conducted a full security audit of the repository, confirming no sensitive information or `.env` files were exposed, and removed `.env.example` to avoid confusion. Finally, fixed a critical bug in `page.tsx` where the audit results page would 404 if the database save failed; I added a robust fallback using `sessionStorage` so the app gracefully recovers. Verified all 12 required Markdown files are at the root and CI is green.
+**What I learned:** Relying purely on a remote database connection for dynamic routing can be fragile; caching the initial payload locally (like in `sessionStorage`) is a great pattern for ensuring smooth UX even if the DB write fails or rate limits are hit.
+**Blockers / what I'm stuck on:** None! Ready to submit.
+**Plan for tomorrow:** Wait for the results of Round 1.
