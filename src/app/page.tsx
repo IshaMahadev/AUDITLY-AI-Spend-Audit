@@ -26,6 +26,8 @@ export default function Home() {
       }
 
       const { audit } = await res.json();
+      // Cache in sessionStorage so the audit page can recover if DB is unreachable
+      sessionStorage.setItem(`audit:${audit.id}`, JSON.stringify(audit));
       router.push(`/audit/${audit.id}`);
     } catch (e) {
       console.error(e);
