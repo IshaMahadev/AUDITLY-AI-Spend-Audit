@@ -1,6 +1,6 @@
 # AI Spend Audit
 
-**Live App:** [https://ai-spend-audit.vercel.app](https://ai-spend-audit.vercel.app)
+**Live App:** [https://ai-spend-audit-psi.vercel.app/](https://ai-spend-audit-psi.vercel.app/)
 
 AI Spend Audit is a brutal, mathematically defensible tool for engineering managers and startup founders to analyze their AI infrastructure stack (Cursor, Copilot, Claude, ChatGPT, etc.) and instantly identify wasted capital from sub-optimal plans.
 
