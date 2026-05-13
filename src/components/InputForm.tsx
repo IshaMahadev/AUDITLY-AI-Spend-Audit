@@ -157,7 +157,7 @@ export default function InputForm({ onSubmit }: InputFormProps) {
               <label htmlFor={`spend-${sub.id}`} className="text-[10px] uppercase tracking-widest text-muted-foreground">Spend/mo ($)</label>
               <input
                 id={`spend-${sub.id}`}
-                type="number" min="0" step="0.01"
+                type="number" min="0" step="0.10"
                 value={sub.spend}
                 onChange={e => updateSub(sub.id, 'spend', parseFloat(e.target.value) || 0)}
                 className="brutalist-input text-sm w-full"
