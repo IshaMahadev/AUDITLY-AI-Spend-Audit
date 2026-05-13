@@ -4,6 +4,10 @@
 
 AI Spend Audit is a brutal, mathematically defensible tool for engineering managers and startup founders to analyze their AI infrastructure stack (Cursor, Copilot, Claude, ChatGPT, etc.) and instantly identify wasted capital from sub-optimal plans.
 
+## Demo Video
+
+[🎥 Click here to view the demo video directory](demo/)
+
 ## Screenshots
 
 ### Homepage — Input Your Stack
