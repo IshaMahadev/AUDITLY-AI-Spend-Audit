@@ -129,7 +129,7 @@ function RecommendationCard({
       {rec.credexOpportunity && (
         <div className="mt-3 pt-3 border-t border-ink/8">
           <p className="font-body text-xs text-ink/50">
-            💡 Credex can help you capture this saving with discounted credits
+            Credex can help you capture this saving with discounted credits
           </p>
         </div>
       )}
@@ -496,7 +496,7 @@ export default function AuditResultsClient({ audit }: { audit: AuditResult }) {
                 onClick={copyLink}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-paper/10 hover:bg-paper/20 text-paper rounded-lg text-xs font-body transition-colors"
               >
-                {copied ? "✓ Link copied!" : "📋 Copy share link"}
+                {copied ? "✓ Link copied!" : "Copy share link"}
               </button>
               <a
                 href={`https://twitter.com/intent/tweet?text=I+just+audited+my+team%27s+AI+spend+with+%40auditly_dev+—+found+%24${audit.totalMonthlySavings}%2Fmo+in+savings.+Free+tool%3A&url=${encodeURIComponent(shareUrl)}`}
@@ -581,7 +581,7 @@ export default function AuditResultsClient({ audit }: { audit: AuditResult }) {
               <div className="card p-6 border-acid/30">
                 <p className="font-display font-700 text-sm text-ink mb-1">
                   {isOptimal
-                    ? "You're spending well. 🎉"
+                    ? "You're spending well."
                     : "Minor optimisations only."}
                 </p>
                 <p className="font-body text-sm text-ink/60 leading-relaxed">

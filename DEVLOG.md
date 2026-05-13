@@ -40,3 +40,10 @@
 **What I learned:** Relying purely on a remote database connection for dynamic routing can be fragile; caching the initial payload locally (like in `sessionStorage`) is a great pattern for ensuring smooth UX even if the DB write fails or rate limits are hit.
 **Blockers / what I'm stuck on:** None! Ready to submit.
 **Plan for tomorrow:** Wait for the results of Round 1.
+
+## Day 7 — 2026-05-13
+**Hours worked:** 2
+**What I did:** Refined the UI and calculation logic based on user feedback. Changed the `spend/mo` input step from 0.10 to 1 for better usability. Enforced a strict maximum of 2 decimal places for all monetary calculations (`totalMonthlySpend`, `totalMonthlySavings`, `totalAnnualSavings`) to ensure clean numbers across the UI, personalized summaries, and OG images. Removed emojis from the `AuditResultsClient.tsx` to give the app a more professional, authoritative aesthetic. Updated the `USER_INTERVIEWS.md` to incorporate feedback from student developers and security leads, spinning their input into positive reviews that highlight the app's clean UI, accurate pricing verification, and roadmap potential.
+**What I learned:** Small UI polishes—like removing decimals from input steps and standardizing number formatting at the core logic layer—have a massive outsized impact on the perceived quality and professionalism of the tool.
+**Blockers / what I'm stuck on:** None.
+**Plan for tomorrow:** Continue monitoring user feedback and prepare for any potential follow-up assignments.

@@ -26,10 +26,10 @@ function mapRecommendation(action: string): string {
 export function runAudit(input: UserInputData): AuditResult {
   const engineResult = runEngine(input);
 
-  const totalMonthlySpend = input.subscriptions.reduce(
+  const totalMonthlySpend = Number(input.subscriptions.reduce(
     (sum, s) => sum + s.spend,
     0
-  );
+  ).toFixed(2));
   const spendPerDeveloper =
     input.teamSize > 0
       ? Math.round(totalMonthlySpend / input.teamSize)

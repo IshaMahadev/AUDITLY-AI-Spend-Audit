@@ -97,6 +97,7 @@ export function runAudit(data: UserInputData): AuditReport {
     }
 
     if (savings < 0) savings = 0;
+    savings = Number(savings.toFixed(2));
     
     totalMonthlySavings += savings;
 
@@ -108,12 +109,13 @@ export function runAudit(data: UserInputData): AuditReport {
     });
   }
 
+  totalMonthlySavings = Number(totalMonthlySavings.toFixed(2));
   const isOptimal = totalMonthlySavings < 50;
 
   return {
     results,
     totalMonthlySavings,
-    totalAnnualSavings: totalMonthlySavings * 12,
+    totalAnnualSavings: Number((totalMonthlySavings * 12).toFixed(2)),
     isOptimal
   };
 }
