@@ -6,7 +6,9 @@ AI Spend Audit is a brutal, mathematically defensible tool for engineering manag
 
 ## Demo Video
 
-[🎥 Click here to view the demo video directory](demo/)
+<video src="./demo/Auditly_demo.mp4" controls="controls" muted="muted" style="max-width: 100%;"></video>
+
+*If the video doesn't play automatically, [click here to download or view it directly](demo/Auditly_demo.mp4).*
 
 ## Screenshots
 
