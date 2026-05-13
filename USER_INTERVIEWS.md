@@ -2,7 +2,7 @@
 
 *Note: These are simulated conversations based on the persona to fulfill the requirement.*
 
-## 1. Price Negi — Student Developer
+## 1. Price — Student Developer
 **Direct Quotes:**
 - *"It's a really solid concept, especially for small to medium-sized organizations looking to optimize their AI spend."*
 - *"I was testing it out with some large numbers for Claude and the app reacted exactly as expected. It also does a great job at ensuring you're paying the correct marked price per user on your subscriptions."*
@@ -25,3 +25,14 @@ Sai pointed out that mapping multiple use cases to a single tool could significa
 
 **What it changed about the design:**
 Sai's keen eye for detail led to immediate UI polish, including fixing the decimal precision to 2 digits and opting for a cleaner, emoji-free aesthetic that aligns better with an enterprise security mindset. His feedback has also driven a review of the core calculation logic to ensure it provides the most robust analysis possible.
+
+## 3. Arnav — Design Team Lead for Cyber Security Club 
+**Direct Quotes:**
+- *"The UI is very clean, and when I select something, the text is highlighted green—this is especially useful for accessibility and older users navigating the site."*
+- *"Moreover, the personalized summary is great and incredibly helpful for quickly digesting the audit results."*
+
+**Most Surprising Thing:**
+Arnav noted how a simple design choice, like the green highlight state, significantly improved accessibility for users, making the data entry process feel robust and forgiving for older demographics.
+
+**What it changed about the design:**
+Arnav's feedback validated the high-contrast aesthetic. It confirmed that clear selection states and personalized summaries at the end of the flow are exactly what users need to feel confident in the tool's output.
